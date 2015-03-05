@@ -130,7 +130,10 @@ function logError(src, error, position) {
   var errorLine = '' + lines[position.line - 1]
   var spaces = ''
 
-  write('error', [position.source + ':' +position.line + ':' + position.column])
+  // write in tap format so that test fail when there's an uncaught exception
+  write('error', ['not ok - ' + error.message])
+
+  write('error', [position.source + ':' + position.line + ':' + position.column])
 
   for (var i = 0; i < position.column; i++) {
     spaces += ' '
